@@ -34,6 +34,10 @@ app.get('/api/service', checkToken, (req, res) => {
             res.sendStatus(403);
         } else {
             sendEmail(req.query.from, authData.user.mail, req.query.subject, req.query.text);
+            res.json({
+                success: true,
+                message: 'Email Sent'
+            });
         }
     });
 
@@ -67,7 +71,7 @@ function sendEmail(from, to, subject, text) {
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
+            res.send({ success: false, message: error });
         } else {
             console.log('Email sent: ' + info.response);
         }
