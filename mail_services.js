@@ -12,11 +12,14 @@ function sendEmail(from, to, subject, text) {
     });
 
     const mailOptions = {
-        from: "Postacı <demireleren1903@gmail.com>",
+        from: {
+            name: "Postacı",
+            address: "demireleren1903@gmail"
+        },
         to: to,
         subject: "New Message From Your Website",
-        text: from + " Says:\n" + text,
-        replyTo: from
+        text: text,
+        replyTo: from.address
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
