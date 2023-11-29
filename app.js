@@ -23,7 +23,7 @@ app.post("/", (req, res) => {
 
 
 
-app.get('/api/service', checkToken, (req, res) => {
+app.get('/api', checkToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
         if (err) {
             console.log(err);
